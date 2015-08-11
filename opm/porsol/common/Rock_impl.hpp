@@ -148,7 +148,7 @@ namespace Opm
 
         static_assert(dim == 3, "");
         std::array<int,9> kmap;
-        permeability_kind_ = fillTensor(deck, tensor, kmap);
+        permeability_kind_ = detail::fillTensor(deck, tensor, kmap);
 
         // Assign permeability values only if such values are
         // given in the input deck represented by 'deck'.  In

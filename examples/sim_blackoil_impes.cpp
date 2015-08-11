@@ -23,8 +23,9 @@
 
 #include <opm/porsol/blackoil/fluid/BlackoilPVT.hpp>
 #include <opm/porsol/blackoil/BlackoilFluid.hpp>
-
 #include <opm/porsol/blackoil/BlackoilSimulator.hpp>
+
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
 
 #include <dune/common/version.hh>
 #if DUNE_VERSION_NEWER(DUNE_COMMON, 2, 3)
@@ -32,6 +33,8 @@
 #else
 #include <dune/common/mpihelper.hh>
 #endif
+
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
 
 #include <opm/porsol/common/SimulatorUtilities.hpp>
 #include <dune/grid/CpGrid.hpp>

@@ -22,12 +22,14 @@
 #include "config.h"
 
 
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
 #include <dune/common/version.hh>
 #if DUNE_VERSION_NEWER(DUNE_COMMON, 2, 3)
 #include <dune/common/parallel/mpihelper.hh>
 #else
 #include <dune/common/mpihelper.hh>
 #endif
+#include <opm/core/utility/platform_dependent/reenable_warnings.h>
 
 #include <opm/porsol/common/SimulatorUtilities.hpp>
 #include <opm/porsol/common/Rock.hpp>

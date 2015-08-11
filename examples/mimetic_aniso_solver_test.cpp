@@ -38,9 +38,10 @@
 #include <algorithm>
 #include <iostream>
 #include <iomanip>
-
-
 #include <array>
+
+
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
 
 #include <dune/common/version.hh>
 #if DUNE_VERSION_NEWER(DUNE_COMMON, 2, 3)
@@ -49,12 +50,13 @@
 #include <dune/common/mpihelper.hh>
 #endif
 
-#include <opm/core/utility/Units.hpp>
-
 #include <dune/grid/yaspgrid.hh>
+
+#include <opm/core/utility/platform_dependent/reenable_warnings.h>
+
+#include <opm/core/utility/Units.hpp>
 #include <dune/grid/CpGrid.hpp>
 #include <opm/core/io/eclipse/EclipseGridInspector.hpp>
-
 #include <opm/parser/eclipse/Deck/Deck.hpp>
 
 #include <opm/porsol/common/fortran.hpp>

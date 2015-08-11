@@ -47,7 +47,6 @@
 
 #include <dune/grid/common/Volumes.hpp>
 #include <dune/grid/CpGrid.hpp>
-#include <dune/grid/yaspgrid.hh>
 
 #include <opm/porsol/common/GridInterfaceEuler.hpp>
 #include <opm/porsol/common/ReservoirPropertyCapillary.hpp>
@@ -190,7 +189,7 @@ namespace Opm
 	    setupBoundaryConditions(param, ginterf_, bcond_);
 	}
 
-        virtual void initSources(const Opm::parameter::ParameterGroup& param)
+        virtual void initSources(const Opm::parameter::ParameterGroup&)
         {
             int nc = ginterf_.numberOfCells();
 	    injection_rates_ = Opm::SparseVector<double>(nc);

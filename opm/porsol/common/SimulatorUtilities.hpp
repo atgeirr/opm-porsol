@@ -38,9 +38,13 @@
 
 
 #include <opm/core/utility/ErrorMacros.hpp>
+
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
 #include <dune/common/version.hh>
 #include <dune/common/fvector.hh>
 #include <dune/grid/io/file/vtk/vtkwriter.hh>
+#include <opm/core/utility/platform_dependent/reenable_warnings.h>
+
 #include <vector>
 #include <fstream>
 #include <algorithm>

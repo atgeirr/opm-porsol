@@ -24,10 +24,14 @@
 #define OPM_DEPRECATED __attribute__((deprecated))
 #define OPM_DEPRECATED_MSG(msg) __attribute__((deprecated))
 
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
+
 #include <opm/material/fluidsystems/BrineCO2FluidSystem.hpp>
 #include <opm/material/fluidstates/CompositionalFluidState.hpp>
 #include <opm/material/constraintsolvers/MiscibleMultiPhaseComposition.hpp>
 #include <opm/material/constraintsolvers/ComputeFromReferencePhase.hpp>
+
+#include <opm/core/utility/platform_dependent/reenable_warnings.h>
 
 #include <opm/core/utility/Exceptions.hpp>
 #include <opm/core/utility/ErrorMacros.hpp>
@@ -118,7 +122,7 @@ private:
 
 // ------------ Method implementations --------------
 
-void BlackoilCo2PVT::init(Opm::DeckConstPtr deck)
+void BlackoilCo2PVT::init(Opm::DeckConstPtr /* deck */)
 {
 	surfaceDensities_[Water]   = 1000.;
 	surfaceDensities_[Gas] = 2.0;

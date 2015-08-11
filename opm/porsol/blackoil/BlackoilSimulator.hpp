@@ -22,8 +22,14 @@
 
 
 
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
 
 #include <dune/grid/io/file/vtk/vtkwriter.hh>
+#include <boost/filesystem/convenience.hpp>
+#include <boost/lexical_cast.hpp>
+
+#include <opm/core/utility/platform_dependent/reenable_warnings.h>
+
 #include <opm/core/utility/Units.hpp>
 #include <opm/core/utility/parameters/ParameterGroup.hpp>
 #include <opm/porsol/common/BoundaryConditions.hpp>
@@ -32,8 +38,6 @@
 #include <opm/parser/eclipse/Parser/Parser.hpp>
 #include <opm/parser/eclipse/Parser/ParseMode.hpp>
 #include <opm/parser/eclipse/Deck/Deck.hpp>
-#include <boost/filesystem/convenience.hpp>
-#include <boost/lexical_cast.hpp>
 #include <iostream>
 #include <string>
 #include <vector>

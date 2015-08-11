@@ -45,7 +45,7 @@
 namespace Opm
 {
 
-    namespace {
+    namespace detail {
 
         /// @brief
         ///    Classify and verify a given permeability specification
@@ -66,7 +66,7 @@ namespace Opm
         ///        TensorPerm     at least one cross-component given.
         ///        None           no components given.
         ///        Invalid        invalid set of components given.
-        PermeabilityKind classifyPermeability(Opm::DeckConstPtr deck)
+        inline PermeabilityKind classifyPermeability(Opm::DeckConstPtr deck)
         {
             const bool xx = deck->hasKeyword("PERMX" );
             const bool xy = deck->hasKeyword("PERMXY");
@@ -134,7 +134,7 @@ namespace Opm
         /// @param [in] i
         /// @param [in] j
         /// @param [in] k
-        void setScalarPermIfNeeded(std::array<int,9>& kmap,
+        inline void setScalarPermIfNeeded(std::array<int,9>& kmap,
                                    int i, int j, int k)
         {
             if (kmap[j] == 0) { kmap[j] = kmap[i]; }
@@ -174,9 +174,9 @@ namespace Opm
         ///
         /// @param [out] tensor
         /// @param [out] kmap
-        PermeabilityKind fillTensor(Opm::DeckConstPtr deck,
-                                    std::vector<const std::vector<double>*>& tensor,
-                                    std::array<int,9>&                     kmap)
+        inline PermeabilityKind fillTensor(Opm::DeckConstPtr deck,
+					   std::vector<const std::vector<double>*>& tensor,
+					   std::array<int,9>&                     kmap)
         {
             PermeabilityKind kind = classifyPermeability(deck);
             if (kind == Invalid) {
@@ -242,7 +242,7 @@ namespace Opm
             return kind;
         }
 
-    } // anonymous namespace
+    } // namespace detail
 
 
 
@@ -697,7 +697,7 @@ namespace Opm
 
         static_assert(dim == 3, "");
         std::array<int,9> kmap;
-        permeability_kind_ = fillTensor(deck, tensor, kmap);
+        permeability_kind_ = detail::fillTensor(deck, tensor, kmap);
         for (int i = 1; i < int(tensor.size()); ++i) {
             if (int(tensor[i]->size()) != num_global_cells) {
                 OPM_THROW(std::runtime_error, "All permeability fields must have the same size as the "

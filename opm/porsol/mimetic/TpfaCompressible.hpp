@@ -518,8 +518,7 @@ namespace Opm
                               &perf_mob_[0],
                               &cell_pressure_scalar_initial[0],
                               &fp_.face_data.gravity_potential[0][0],
-                              &perf_gpot_[0],
-                              &(pfluid_->surfaceDensities()[0]));
+                              &perf_gpot_[0]);
             psolver_.linearSystem(linsys);
             // The linear system is for direct evaluation, we want a residual based approach.
             // First we compute the residual for the original code.
@@ -780,8 +779,7 @@ namespace Opm
                                       &perf_mob_[0],
                                       &cell_pressure_initial[0],
                                       &fp_.face_data.gravity_potential[0][0],
-                                      &perf_gpot_[0],
-                                      &(pfluid_->surfaceDensities()[0]));
+                                      &perf_gpot_[0]);
                     PressureAssembler::LinearSystem s;
                     psolver_.linearSystem(s);
                     // Solve system.

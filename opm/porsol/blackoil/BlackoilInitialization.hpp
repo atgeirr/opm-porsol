@@ -117,7 +117,7 @@ namespace Opm
                             double rho = 0.5*((simstate.cell_z_[cell]+simstate.cell_z_[cell-1])*fluid.surfaceDensities());
                             double press = rho*((grid.cellCentroid(cell) - grid.cellCentroid(cell-1))*gravity) + simstate.cell_pressure_[cell-1][0];
                             simstate.cell_pressure_[cell] = PhaseVec(press);
-                            typename Fluid::FluidState state = fluid.computeState(simstate.cell_pressure_[cell], simstate.cell_z_[cell]);
+                            state = fluid.computeState(simstate.cell_pressure_[cell], simstate.cell_z_[cell]);
                             fluid_vol_dens = state.total_phase_volume_density_;
                             simstate.cell_z_[cell] *= 1.0/fluid_vol_dens;
                             ++cnt;
@@ -214,7 +214,6 @@ namespace Opm
             double datum_pressure_barsa = param.getDefault<double>("datum_pressure", 248.22);
             double datum_pressure = Opm::unit::convert::from(datum_pressure_barsa, Opm::unit::barsa);
             double wo_contact_depth = param.getDefault<double>("wo_contact_depth", 3032.76) - zeroDepth;
-            double go_contact_depth = param.getDefault<double>("go_contact_depth", 2682.24) - zeroDepth;
         
             double connate_water_saturation = param.getDefault<double>("connate_water_saturation", 0.151090);
             double residual_oil_saturation = param.getDefault<double>("residual_oil_saturation", 0.118510);
@@ -248,11 +247,11 @@ namespace Opm
                     int kk=k0+k;
                     if (i>0 && k==0) {
                         computeCellState(grid, fluid, gravity,
-                                         kk, kk-nz, wo_contact_depth, go_contact_depth, connate_water_saturation,
+                                         kk, kk-nz, wo_contact_depth, connate_water_saturation,
                                          residual_oil_saturation, simstate);
                     } else if (k>0) { 
                         computeCellState(grid, fluid, gravity,
-                                         kk, kk-1, wo_contact_depth, go_contact_depth, connate_water_saturation,
+                                         kk, kk-1, wo_contact_depth, connate_water_saturation,
                                          residual_oil_saturation, simstate);
                     }
                     // Copy cell properties to y-layers
@@ -273,7 +272,6 @@ namespace Opm
                               int iCell,
                               int iRef,
                               double wo_contact_depth,
-                              double go_contact_depth,
                               double connate_water_saturation,
                               double residual_oil_saturation,
                               State& simstate)

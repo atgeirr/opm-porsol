@@ -132,9 +132,9 @@ public:
      * \return The effective saturaion of the wetting phase \f$\overline{S}_w\f$
      */
     template <class SatContainerT, class pcContainerT>
-    static void S(SatContainerT &saturations,
-                  const Params &params, 
-                  const pcContainerT &pc,
+    static void S(SatContainerT& /*saturations*/,
+                  const Params& /*params*/, 
+                  const pcContainerT& /*pc*/,
                   Scalar /*temperature*/)
     {
         std::cerr << "FluidMatrixInteractionBlackoil::S() is not implemented yet\n";

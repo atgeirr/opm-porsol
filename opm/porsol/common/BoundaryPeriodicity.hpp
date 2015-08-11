@@ -21,7 +21,10 @@
 #define OPM_BOUNDARYPERIODICITY_HEADER_INCLUDED
 
 
+#include <opm/core/utility/platform_dependent/disable_warnings.h>
 #include <dune/common/fvector.hh>
+#include <opm/core/utility/platform_dependent/reenable_warnings.h>
+
 #include <array>
 #include <opm/core/utility/ErrorMacros.hpp>
 
